@@ -20,5 +20,7 @@
 * [微前端](ling-yu-wen-ti/wei-qian-duan.md)
 * [serverless](ling-yu-wen-ti/serverless.md)
 * [搭建](ling-yu-wen-ti/da-jian.md)
+* [跨端开发](ling-yu-wen-ti/kua-duan-kai-fa.md)
 * [移动端适配](ling-yu-wen-ti/yi-dong-duan-kuo-pei.md)
+* [小程序](ling-yu-wen-ti/xiao-cheng-xu.md)
 
