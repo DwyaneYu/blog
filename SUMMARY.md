@@ -27,4 +27,5 @@
 
 * [移动端适配](chang-jian-wen-ti/yi-dong-duan-kuo-pei.md)
 * [拖拽](chang-jian-wen-ti/tuo-ye.md)
+* [性能优化](chang-jian-wen-ti/xing-neng-you-hua.md)
 
