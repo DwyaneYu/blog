@@ -14,7 +14,7 @@
 
 > function List\(\){
 >
->    this.listSize = 0; // 列表元素个数
+>   this.listSize = 0; // 列表元素个数
 
 > this.pos = 0;  // 列表当前位置
 >
