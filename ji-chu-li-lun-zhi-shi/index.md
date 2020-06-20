@@ -72,55 +72,77 @@
 
 ### 栈的实现
 
-> function Stack\(\) {
->
->   this.dataStore = \[\];
->
->   this.top = 0;
->
->   this.push = push;
->
->   this.pop = pop;
->
->   this.peek = peek;
->
->   this.clear = clear;
->
->   this.length = length;
+```text
+function Stack() {
+   this.dataStore = [];
+   this.top = 0;
+   this.push = push;
+   this.pop = pop;
+   this.peek = peek;
+   this.clear = clear;
+   this.length = length;
+}
+function push(element) {
+   this.dataStore[this.top++] = element;
+}
+function peek() {
+   return this.dataStore[this.top-1];
 
-> }
+}
+function pop() {
+   return this.dataStore[--this.top];
+}
+function clear() {
+   this.top = 0;
+}
+function length() {
+   return this.top;
+}
+```
 
 ### 使用Stack的场景
 
 #### 数制间的相互转换
 
-> function mulBase\(num, base\) {
->
->   var s = new Stack\(\);      
->
->   while\(num !== 0\){
->
->     s.push\(num%base\) ;
->
->     num = Math.floor\(num/base\)
->
->   }
->
->   var converted = "";
->
->   while\(s.length\(\) &gt; 0\){
->
->     converted += s.pop\(\)
->
->   }
->
->   return converted;
->
-> }
+```text
+function mulBase(num, base) {
+     var s = new Stack();
+     while (num > 0){
+        s.push(num % base);
+        num = Math.floor(num /= base);
+     };
+     var converted = "";
+     while (s.length() > 0) {
+        converted += s.pop();
+     }
+     return converted;
+  }
+```
 
 #### 回文
 
 一个单词、短语或数字，从前往后写和从后往前写都是一样的。 比如，单词“dad”、“racecar”就是回文;
+
+```text
+    function isPalindrome(word) {
+        var s = new Stack();
+        for (var i = 0; i < word.length; ++i) {
+           s.push(word[i]);
+        }
+        var rword = "";
+        while (s.length() > 0) {
+           rword += s.pop();
+        }
+        if (word == rword) {
+           return true;
+        } else {
+           return false;
+        }
+      }
+
+```
+
+
 
 > function isPalindrome\(word\){
 >
@@ -152,19 +174,37 @@
 >
 > }
 
-#### 模拟递归
+## 队列
 
-#### 队列
+队列是一种列表，只能在队尾插入元素，队首删除元素。队列用于存储按顺序排列的的数据，先进先出。
 
-#### 链表
+### 对队列的操作
 
-#### 字典
+### 队列的实现
 
-#### 散列
+> ```text
+>  function Queue() {
+>   this.dataStore = [];
+>   this.enqueue = enqueue;
+>   this.dequeue = dequeue;
+>   this.front = front;
+>   this.back = back;
+>   this.toString = toString;
+>   this.empty = empty;
+>  }       
+> ```
 
-#### 集合
+### 使用队列的场景
 
-#### 二叉树与二叉查找树
+## 链表
+
+## 字典
+
+## 散列
+
+## 集合
+
+## 二叉树与二叉查找树
 
 
 
