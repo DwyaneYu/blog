@@ -13,24 +13,43 @@
 ### 实现列表类
 
 > function List\(\){
->   this.listSize = 0; // 列表元素个数
+>
+>    this.listSize = 0; // 列表元素个数
+>
 >   this.pos = 0;  // 列表当前位置
+>
 >   this.dataStore = \[\]; // 初始化一个空数组来保存列表数据
+>
 >   this.clear = clear; // 清空列表所有数据
+>
 >   this.find = find; // 在列表中查找某一元素
+>
 >   this.toString = toString; //返回列表的字符串形式
+>
 >   this.insert = insert; // 在现有元素后插入新元素
+>
 >   this.append = append; //在列表的末尾添加新元素
+>
 >   this.remove = remove; // 从列表中删除元素
+>
 >   this.front = front;  // 将列表的当前位置移动到第一个元素 
+>
 >   this.end = end; // 将当前列表位置移动到最后一个元素
+>
 >   this.prev = prev; // 将当前位置后移一位
+>
 >   this.next = next; // 将当前位置前移一位
+>
 >   this.length = length; // 返回当前列表元素个数
+>
 >   this.currPos = currPos; 
+>
 >   this.moveTo = moveTo; 
+>
 >   this.getElement = getElement; 
+>
 >   this.contains = contains;
+
 > }
 
 ### 使用迭代器访问列表
@@ -70,6 +89,70 @@
 >   this.length = length;
 
 > }
+
+### 使用Stack的场景
+
+#### 数制间的相互转换
+
+> function mulBase\(num, base\) {
+>
+>   var s = new Stack\(\);      
+>
+>   while\(num !== 0\){
+>
+>     s.push\(num%base\) ;
+>
+>     num = Math.floor\(num/base\)
+>
+>   }
+>
+>   var converted = "";
+>
+>   while\(s.length\(\) &gt; 0\){
+>
+>     converted += s.pop\(\)
+>
+>   }
+>
+>   return converted;
+>
+> }
+
+#### 回文
+
+一个单词、短语或数字，从前往后写和从后往前写都是一样的。 比如，单词“dad”、“racecar”就是回文;
+
+> function isPalindrome\(word\){
+>
+>   var s = new Stack\(\);
+>
+>   for\(var i=0;i&lt; word.length;i++\){ 
+>
+>     s.push\(word\[i\]\)
+>
+>   }
+>
+>  var rword = "";
+>
+>   while\(s.length\(\) &gt; 0\){
+>
+>     rword += s.pop\(\);
+>
+>   }
+>
+>  if\(rword === word\){ 
+>
+>     return true
+>
+>   } else {
+>
+>     return false;
+>
+>   }
+
+> }
+
+#### 模拟递归
 
 #### 队列
 
