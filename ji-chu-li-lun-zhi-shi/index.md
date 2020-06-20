@@ -15,8 +15,8 @@
 > function List\(\){
 >
 >    this.listSize = 0; // 列表元素个数
->
->   this.pos = 0;  // 列表当前位置
+
+> this.pos = 0;  // 列表当前位置
 >
 >   this.dataStore = \[\]; // 初始化一个空数组来保存列表数据
 >
