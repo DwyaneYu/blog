@@ -2,55 +2,63 @@
 
 ## 数组
 
-> 一个存储元素的线性集合。JavaScript中的数组是一种特殊的对象，所以效率不如其他语言中的数组高
+### 什么是数组
+
+一个存储元素的线性集合。JavaScript中的数组是一种特殊的对象，所以效率不如其他语言中的数组高
 
 索引：数字索引在内部被转换为字符串类型，因为JavaScript中对象中的属性名必须是字符串
 
 ## 列表
 
-> 列表中使用的元素不是太多，同时不需要在一个很长的列表中查找元素或对其进行排序
+### 什么是列表
 
-### 实现列表类
+列表是一组有序的数据。每个列表中的数据项称为元素。在 JavaScript 中，列表中的元素 可以是任意数据类型。列表中可以保存多少元素并没有事先限定，实际使用时元素的数量 受到程序内存的限制。
 
-> function List\(\){
->
->   this.listSize = 0; // 列表元素个数
+### 列表的实现
 
-> this.pos = 0;  // 列表当前位置
->
->   this.dataStore = \[\]; // 初始化一个空数组来保存列表数据
->
->   this.clear = clear; // 清空列表所有数据
->
->   this.find = find; // 在列表中查找某一元素
->
->   this.toString = toString; //返回列表的字符串形式
->
->   this.insert = insert; // 在现有元素后插入新元素
->
->   this.append = append; //在列表的末尾添加新元素
->
->   this.remove = remove; // 从列表中删除元素
->
->   this.front = front;  // 将列表的当前位置移动到第一个元素 
->
->   this.end = end; // 将当前列表位置移动到最后一个元素
->
->   this.prev = prev; // 将当前位置后移一位
->
->   this.next = next; // 将当前位置前移一位
->
->   this.length = length; // 返回当前列表元素个数
->
->   this.currPos = currPos; 
->
->   this.moveTo = moveTo; 
->
->   this.getElement = getElement; 
->
->   this.contains = contains;
+```text
 
-> }
+function List() {
+    this.listSize = 0;
+    this.pos = 0;
+    this.dataStore = []; // 初始化一个空数组来保存列表元素 
+    this.clear = clear;
+    this.find = find; 
+    this.toString = toString; 
+    this.insert = insert; 
+    this.append = append; 
+    this.remove = remove; 
+    this.front = front;
+    this.end = end;
+    this.prev = prev;
+    this.next = next;
+    this.length = length;
+    this.currPos = currPos;
+    this.moveTo = moveTo;
+    this.getElement = getElement;
+    this.length = length;
+    this.contains = contains;
+}
+function append(element) {
+    this.dataStore[this.listSize++] = element;
+}
+function find(element) {
+    for (var i = 0; i < this.dataStore.length; ++i) {
+       if (this.dataStore[i] == element) {
+          return i;
+    } }
+    return -1; 
+}
+function remove(element) {
+    var foundAt = this.find(element); 
+    if (foundAt > -1) {
+       this.dataStore.splice(foundAt,1);
+       --this.listSize;
+       return true;
+    }
+    return false;
+}
+```
 
 ### 使用迭代器访问列表
 
@@ -64,7 +72,9 @@
 
 ## 栈
 
-> 栈是一种高效的数据结构\(LIFO，后入先出\)，数据只能在栈顶添加或删除，然和不在栈顶的元素无法访问，为了得到栈底的元素必须拿掉上面的元素
+### 什么是栈
+
+栈是一种高效的数据结构\(LIFO，后入先出\)，数据只能在栈顶添加或删除，然和不在栈顶的元素无法访问，为了得到栈底的元素必须拿掉上面的元素
 
 ### 对栈的操作
 
@@ -100,7 +110,7 @@ function length() {
 }
 ```
 
-### 使用Stack的场景
+### 使用栈的场景
 
 #### 数制间的相互转换
 
@@ -139,40 +149,9 @@ function mulBase(num, base) {
            return false;
         }
       }
-
 ```
 
 
-
-> function isPalindrome\(word\){
->
->   var s = new Stack\(\);
->
->   for\(var i=0;i&lt; word.length;i++\){ 
->
->     s.push\(word\[i\]\)
->
->   }
->
->  var rword = "";
->
->   while\(s.length\(\) &gt; 0\){
->
->     rword += s.pop\(\);
->
->   }
->
->  if\(rword === word\){ 
->
->     return true
->
->   } else {
->
->     return false;
->
->   }
->
-> }
 
 ## 队列
 
@@ -180,23 +159,77 @@ function mulBase(num, base) {
 
 ### 对队列的操作
 
+队列的两种主要操作是:向队列中插入新元素和删除队列中的元素。插入操作也叫做入 队，删除操作也叫做出队。队列的另外一项重要操作是读取队头的元素。这个操作叫做 peek\(\)。该操作返回队头元 素，但不把它从队列中删除。除了读取队头元素，我们还想知道队列中存储了多少元素， 可以使用 length 属性满足该需求;要想清空队列中的所有元素，可以使用 clear\(\) 方法来 实现。
+
 ### 队列的实现
 
-> ```text
->  function Queue() {
->   this.dataStore = [];
->   this.enqueue = enqueue;
->   this.dequeue = dequeue;
->   this.front = front;
->   this.back = back;
->   this.toString = toString;
->   this.empty = empty;
->  }       
-> ```
+```text
+ function Queue() {
+  this.dataStore = [];
+  this.enqueue = enqueue; // 向队尾添加一个元素
+  this.dequeue = dequeue; // 方法删除队首的元素
+  this.front = front; // 读取队首元素
+  this.back = back; // 读取队尾元素
+  this.toString = toString; // 
+  this.empty = empty;
+ } 
+```
 
 ### 使用队列的场景
 
+#### 方块舞的舞伴分配问题
+
+#### 数据排序
+
+#### 优先队列
+
 ## 链表
+
+### 数组的缺点
+
+* 在很多语言中，数组的长度是固定的
+* 添加和删除需要将其他元素进行平移
+* JavaScript中的数据是一种特殊的对象，相较于其他语言效率较低
+
+### 什么是链表
+
+链表是由一组节点组成的集合，每个节点都使用一个对象的引用指向它的后继，指向另一 个节点的引用叫做链。数组元素靠它们的位置进行引用，链表元素则是靠相互之间的关系进行引用
+
+### 链表的实现
+
+```text
+function Node(element) {
+  this.element = element;
+  this.next = null;
+}
+function find(item) {
+  var currNode = this.head;
+  while (currNode.element != item) {
+     currNode = currNode.next;
+  }
+  return currNode;
+}
+function insert(newElement, item) { 
+  var newNode = new Node(newElement); 
+  var current = this.find(item); 
+  newNode.next = current.next; 
+  current.next = newNode;
+}
+function display() {
+  var currNode = this.head;
+  while (!(currNode.next == null)) {
+     print(currNode.next.element);
+     currNode = currNode.next;
+  }
+}
+function findPrevious(item) {
+  var currNode = this.head;
+  while (!(currNode.next == null) && (currNode.next.element != item)) {
+    currNode = currNode.next;
+  }
+  return currNode;
+}
+```
 
 ## 字典
 
