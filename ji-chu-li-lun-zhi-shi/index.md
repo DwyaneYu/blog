@@ -151,8 +151,6 @@ function mulBase(num, base) {
       }
 ```
 
-
-
 ## 队列
 
 队列是一种列表，只能在队尾插入元素，队首删除元素。队列用于存储按顺序排列的的数据，先进先出。
@@ -202,6 +200,14 @@ function Node(element) {
   this.element = element;
   this.next = null;
 }
+function LList() {
+  this.head = new Node("head"); 
+  this.find = find;
+  this.insert = insert; 
+  this.display = display; 
+  this.findPrevious = findPrevious; 
+  this.remove = remove;
+}
 function find(item) {
   var currNode = this.head;
   while (currNode.element != item) {
@@ -228,6 +234,12 @@ function findPrevious(item) {
     currNode = currNode.next;
   }
   return currNode;
+}
+function remove(item) {
+  var prevNode = this.findPrevious(item);
+  if (!(prevNode.next == null)) {
+      prevNode.next = prevNode.next.next;
+  }
 }
 ```
 
