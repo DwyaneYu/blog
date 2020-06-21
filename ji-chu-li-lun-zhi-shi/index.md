@@ -623,6 +623,267 @@ function insert(data) {
 有三种遍历 BST 的方式:中序、先序和后序。中序遍历按照节点上的键值，以升序访问 BST 上的所有节点。先序遍历先访问根节点，然后以同样方式访问左子树和右子树。后序 遍历先访问叶子节点，从左子树到右子树，再到根节点。
 
 ```text
+function Node(data, left, right) {
+    this.data = data;
+    this.left = left;
+    this.right = right;
+    this.show = show;
+}
+```
+
+#### 中序遍历
+
+```text
+function inOrder(node) {
+  if (!(node == null)) {
+     inOrder(node.left);
+     putstr(node.show() + " ");
+     inOrder(node.right);
+  }
+}
+
+```
+
+![](../.gitbook/assets/image%20%283%29.png)
+
+#### 先序遍历
+
+```text
+function preOrder(node) {
+  if (!(node == null)) {
+    putstr(node.show() + " ");
+    preOrder(node.left);
+    preOrder(node.right);
+  } 
+}
+```
+
+![](../.gitbook/assets/image%20%284%29.png)
+
+#### 后序遍历
+
+```text
+function postOrder(node) {
+  if (!(node == null)) {
+     postOrder(node.left);
+     postOrder(node.right);
+     putstr(node.show() + " ");
+  }
+}
+```
+
+### 在二叉查找树上进行查找
+
+#### 查找最大值和最小值
+
+查找 BST 上的最小值和最大值非常简单。因为较小的值总是在左子节点上，在 BST 上查找最小值，只需要遍历左子树，直到找到最后一个节点
+
+```text
+function getMin() {
+  var current = this.root;
+  while (!(current.left == null)) {
+     current = current.left;
+  }
+  return current.data;
+}
+function getMax() {
+  var current = this.root;
+  while (!(current.right == null)) {
+     current = current.right;
+  }
+  return current.data;
+}
+```
+
+#### 查找给定值
+
+在 BST 上查找给定值，需要比较该值和当前节点上的值的大小。通过比较，就能确定如果给定值不在当前节点时，该向左遍历还是向右遍历。
+
+```text
+function find(data) {
+    var current = this.root;
+    while (current != null) {
+        if (current.data === data) {
+            return current;
+        }
+        else if (data < current.data) {
+            current = current.left;
+        } else {
+            current = current.right;
+        }
+    }
+    return null;
+}
+
+```
+
+#### 从二叉查找树上删除节点
+
+从 BST 上删除节点的操作最复杂，其复杂程度取决于删除哪个节点。如果删除没有子节点 的节点，那么非常简单。如果节点只有一个子节点，不管是左子节点还是右子节点，就变 得稍微有点复杂了。删除包含两个子节点的节点最复杂。
+
+```text
+function removeNode(node, data) {
+    if (node == null) {
+        return null;
+    }
+    if (data == node.data) {
+        // 没有子节点的节点
+        if (node.left == null && node.right == null) {
+            return null;
+        }
+        // 没有左子节点的节点
+        if (node.left == null) {
+            return node.right;
+        }
+        // 没有右子节点的节点
+        if (node.right == null) {
+            return node.left;
+        }
+        // 有两个子节点的节点
+        var tempNode = getSmallest(node.right);
+        node.data = tempNode.data;
+        node.right = removeNode(node.right, tempNode.data); 
+        return node;
+        }
+    else if (data < node.data) {
+        node.left = removeNode(node.left, data);
+        return node;
+    } else {
+        node.right = removeNode(node.right, data);
+        return node;
+    } 
+}
+
+```
+
+### 使用二叉查找树的场景
+
+#### 计数
+
+BST 的一个用途是记录一组数据集中数据出现的次数。比如，可以使用 BST 记录考试成 绩的分布。给定一组考试成绩，可以写一段程序将它们加入一个 BST，如果某成绩尚未在 BST 中出现，就将其加入 BST;如果已经出现，就将出现的次数加 1。
+
+为了解决该问题，我们来修改 Node 对象，为其增加一个记录成绩出现频次的成员，同时我 们还需要一个方法，当在 BST 中发现某成绩时，需要将出现的次数加 1，并且更新该节点。
+
+```text
+// 先修改 Node 对象的定义，为其增加记录成绩出现次数的成员
+function Node(data, left, right) {
+    this.data = data;
+    this.count = 1;
+    this.left = left;
+    this.right = right;
+    this.show = show;
+}
+function update(data) {
+    var grade = this.find(data); 
+    grade.count++;
+    return grade;
+}
+```
+
+## 图
+
+### 什么是图
+
+由边的集合及顶点的集合组成。如果一个 图的顶点对是有序的，则可以称之为有向图。
+
+![](../.gitbook/assets/image%20%285%29.png)
+
+### 图的实现
+
+```text
+// Graph.js
+function Graph(v) {
+    this.vertices = v;
+    this.edges = 0;
+    this.adj = [];
+    for (var i = 0; i < this.vertices; ++i) {
+        this.adj[i] = [];
+        this.adj[i].push("");
+    }
+    this.addEdge = addEdge;
+    this.showGraph = showGraph;
+}
+function addEdge(v, w) {
+    this.adj[v].push(w);
+    this.adj[w].push(v);
+    this.edges++;
+}
+function showGraph() {
+    for (var i = 0; i < this.vertices; ++i) {
+        putstr(i + " -> ");
+        for (var j = 0; j < this.vertices; ++j ) {
+            if (this.adj[i][j] != undefined) { 
+                putstr(this.adj[i][j] + ' ');
+            } 
+        }
+        print(); 
+    }
+}
+
+load("Graph.js");
+g = new Graph(5);
+g.addEdge(0,1);
+g.addEdge(0,2);
+g.addEdge(1,3);
+g.addEdge(2,4);
+g.showGraph();
+```
+
+以上输出显示，顶点 0 有到顶点 1 和顶点 2 的边;顶点 1 有到顶点 0 和顶点 3 的边;顶 点 2 有到顶点 0 和 4 的边;顶点 3 有到顶点 1 的边;顶点 4 有到顶点 2 的边。
+
+### 搜索图
+
+#### 深度优先搜索
+
+深度优先搜索包括从一条路径的起始顶点开始追溯，直到到达最后一个顶点，然后回溯， 继续追溯下一条路径，直到到达最后的顶点，如此往复，直到没有路径为止。这不是在搜 索特定的路径，而是通过搜索来查看在图中有哪些路径可以选择。
+
+![](../.gitbook/assets/image%20%286%29.png)
+
+深度优先搜索算法比较简单:访问一个没有访问过的顶点，将它标记为已访问，再递归地去访问在初始顶点的邻接表中其他没有访问过的顶点。
+
+```text
+function Graph(v) {
+    this.vertices = v;
+    this.edges = 0;
+    this.adj = [];
+    for (var i = 0; i < this.vertices; ++i) {
+        this.adj[i] = [];
+        this.adj[i].push("");
+    }
+    this.addEdge = addEdge;
+    this.showGraph = showGraph;
+    this.dfs = dfs;
+    this.marked = [];
+    for (var i = 0; i < this.vertices; ++i) {
+        this.marked[i] = false;
+    }
+}
+function addEdge(v, w) {
+    this.adj[v].push(w);
+    this.adj[w].push(v);
+    this.edges++;
+}
+function showGraph() {
+    for (var i = 0; i < this.vertices; ++i) {
+        console.log(i + " -> ");
+        for (var j = 0; j < this.vertices; ++j) {
+            if (this.adj[i][j] != undefined)
+                console.log(this.add[i][j] + '  ');
+            }
+            print(); 
+        }
+}
+function dfs(v) {
+    this.marked[v] = true;
+    if (this.adj[v] != undefined) {
+        print("Visited vertex:  " + v);
+    }
+    for(var w in this.adj[v]) {
+    if (!this.marked[w]) {
+    this.dfs(w);
+    }
+    } 
+}
 
 ```
 
