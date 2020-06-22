@@ -5,6 +5,7 @@
 ## 基础理论知识\(通用能力\) <a id="ji-chu-li-lun-zhi-shi"></a>
 
 * [数据结构与算法](ji-chu-li-lun-zhi-shi/index.md)
+* [时间复杂度和空间复杂度](ji-chu-li-lun-zhi-shi/shi-jian-fu-za-du-he-kong-jian-fu-za-du.md)
 * [设计模式](ji-chu-li-lun-zhi-shi/she-ji-mo-shi.md)
 
 ## 基础理论知识\(前端必备\)
@@ -29,4 +30,9 @@
 * [移动端适配](chang-jian-wen-ti/yi-dong-duan-kuo-pei.md)
 * [拖拽](chang-jian-wen-ti/tuo-ye.md)
 * [性能优化](chang-jian-wen-ti/xing-neng-you-hua.md)
+
+## 面试
+
+* [Leetcode](mian-shi/leetcode.md)
+* [排序算法](mian-shi/pai-xu-suan-fa.md)
 
