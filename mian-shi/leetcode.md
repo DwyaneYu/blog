@@ -1,18 +1,31 @@
 # Leetcode
 
-1、滑动窗口
+## **快慢指针类型**
+
+\*\*\*\*
+
+## 滑动窗口
 
 滑动窗口类型的题目经常是用来执行数组或是链表上某个区间（窗口）上的操作。比如找最长的全为1的子数组长度。滑动窗口一般从第一个元素开始，一直往右边一个一个元素挪动。当然了，根据题目要求，我们可能有固定窗口大小的情况，也有窗口的大小变化的情况。
 
-```text
-holidays 表示平日或假日，例如 0000011 表示前面 5 天是平日，後面 2 天是假日。
-pto 表示最多可以放幾天假。
-output: 計算在可以用完 pto 的情況下，最久可以放多長的假。
+### 1、最长假日
 
-示例：holidays = {0,0,0,0,0,1,1}, pto = 2, output = 4 
-     因為可以放 {0,0,0,1,1,1,1}
+holidays 表示平日或假日，例如 0000011 表示前面 5 天是工作日，后面 2 天是假日。 pto 表示最多可以放几天假。 output: 计算在可以用完 pto 的情況下，最久可以放多长的连续的假。
+
+#### Example：
+
+```text
+Input: holidays = [0,0,0,0,0,1,1], pto = 2, 
+Output = 4 
+Explanation: [0,0,0,1,1,1,1]
+```
+
+#### Solution:
+
+```text
+
      
-function longestHoliday(arr, pto){
+function longestHolidays(arr, pto){
   let start = 0;
   let longest = -1;
   for(let end=0;end < arr.length;++end){
@@ -32,9 +45,25 @@ function longestHoliday(arr, pto){
 }
 
 const arr = [0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,0,0,1,1,1];
-const res = longestHoliday(arr, 9);
+const res = longestHolidays(arr, 9);
 console.log(res);     
 ```
+
+### 2、[最大子数组之和](https://leetcode.com/problems/maximum-subarray/)
+
+Given an integer array `nums`, find the contiguous subarray \(containing at least one number\) which has the largest sum and return its sum.
+
+
+
+**Example:**
+
+```text
+Input: [-2,1,-3,4,-1,2,1,-5,4],
+Output: 6
+Explanation: [4,-1,2,1] has the largest sum = 6.
+```
+
+#### Solution:
 
 ```text
 function maxSubArray(nums) {
@@ -51,7 +80,7 @@ const res = maxSubArray(arr)
 console.log(res)
 ```
 
-2、循环排序
+## 循环排序
 
 ```text
 
