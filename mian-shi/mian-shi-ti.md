@@ -1,5 +1,18 @@
 # 面试题
 
+## 浏览器
+
+### fetch与XMLHttpRequest
+
+#### fetch的缺点：
+
+* 浏览器支持不好
+* 默认无cookie
+* 错误不会被拒绝
+* 不支持超时
+* 终止fetch
+* 不支持progress
+
 ## React
 
 ### 渲染原理

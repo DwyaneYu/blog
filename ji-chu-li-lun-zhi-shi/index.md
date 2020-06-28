@@ -134,21 +134,21 @@ function mulBase(num, base) {
 一个单词、短语或数字，从前往后写和从后往前写都是一样的。 比如，单词“dad”、“racecar”就是回文;
 
 ```text
-    function isPalindrome(word) {
-        var s = new Stack();
-        for (var i = 0; i < word.length; ++i) {
-           s.push(word[i]);
-        }
-        var rword = "";
-        while (s.length() > 0) {
-           rword += s.pop();
-        }
-        if (word == rword) {
-           return true;
-        } else {
-           return false;
-        }
-      }
+ function isPalindrome(word) {
+     var s = new Stack();
+     for (var i = 0; i < word.length; ++i) {
+        s.push(word[i]);
+     }
+     var rword = "";
+     while (s.length() > 0) {
+        rword += s.pop();
+     }
+     if (word == rword) {
+        return true;
+     } else {
+        return false;
+     }
+   }
 ```
 
 ## 队列
